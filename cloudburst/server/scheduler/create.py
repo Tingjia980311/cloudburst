@@ -50,7 +50,7 @@ def create_function(func_create_socket, kvs, consistency=NORMAL):
         skcl = SingleKeyCausalLattice(sutils.DEFAULT_VC,
                                       SetLattice({func.body}))
         kvs.put(name, skcl)
-        logging.info('here ......)
+        logging.info('here ......')
 
     funcs = utils.get_func_list(kvs, '', fullname=True)
     funcs.append(name)
