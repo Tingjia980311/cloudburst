@@ -45,10 +45,12 @@ def create_function(func_create_socket, kvs, consistency=NORMAL):
         
         body = LWWPairLattice(sutils.generate_timestamp(0), func.body)
         res = kvs.put(name, body)
+        logging.info('putting results %s.' % (res))
     else:
         skcl = SingleKeyCausalLattice(sutils.DEFAULT_VC,
                                       SetLattice({func.body}))
         kvs.put(name, skcl)
+        logging.info('here ......)
 
     funcs = utils.get_func_list(kvs, '', fullname=True)
     funcs.append(name)
