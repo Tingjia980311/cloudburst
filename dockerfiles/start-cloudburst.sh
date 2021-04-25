@@ -35,7 +35,8 @@ gen_yml_list() {
 # client from the Anna project.
 cd $HYDRO_HOME/anna
 git remote remove origin
-git remote add origin https://github.com/Tingjia980311/anna.git
+git remote set-url origin https://github.com/Tingjia980311/anna.git
+
 while !(git fetch -p origin); do
    echo "anna ...."
    echo "git fetch failed, retrying..."
@@ -58,9 +59,10 @@ if [[ -z "$REPO_BRANCH" ]]; then
 fi
 
 git remote remove origin
-git remote add origin https://github.com/$REPO_ORG/cloudburst.git
+git remote set-url origin https://github.com/$REPO_ORG/cloudburst.git
 
 while !(git fetch -p origin); do
+   echo "cloudburst"
    echo "git fetch failed, retrying..."
 done
 
