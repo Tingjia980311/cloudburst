@@ -37,6 +37,7 @@ cd $HYDRO_HOME/anna
 git remote remove origin
 git remote add origin https://github.com/Tingjia980311/anna.git
 while !(git fetch -p origin); do
+   echo "anna ...."
    echo "git fetch failed, retrying..."
 done
 
