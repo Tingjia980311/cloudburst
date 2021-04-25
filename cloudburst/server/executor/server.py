@@ -58,7 +58,6 @@ def executor(ip, mgmt_ip, schedulers, thread_id):
     print(sutils.BIND_ADDR_TEMPLATE % (sutils.PIN_PORT + thread_id))
     print(sutils.BIND_ADDR_TEMPLATE % (sutils.UNPIN_PORT + thread_id))
     os.system("echo Hello from the other side!")
-    os.system("echo Hello from the other side!")
     print(os.system("netstat -ltnp "))
 
 
@@ -191,6 +190,7 @@ def executor(ip, mgmt_ip, schedulers, thread_id):
             total_occupancy += elapsed
 
         if exec_socket in socks and socks[exec_socket] == zmq.POLLIN:
+            logging.info('Received a execution call')
             work_start = time.time()
             exec_function(exec_socket, client, user_library, cache,
                           function_cache)
