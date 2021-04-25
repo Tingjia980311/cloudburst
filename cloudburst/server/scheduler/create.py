@@ -47,7 +47,7 @@ def create_function(func_create_socket, kvs, consistency=NORMAL):
         res = kvs.put(name, body)
         kv_pairs = kvs.get(name)
         return_lattice = kv_pairs[name]
-        loggin.info("-------------------")
+        logging.info("-------------------")
         logging.info(return_lattice.reveal())
         logging.info('putting results %s.' % (res))
     else:
