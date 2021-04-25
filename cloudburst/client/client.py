@@ -144,6 +144,7 @@ class CloudburstConnection():
         resp.ParseFromString(self.func_create_sock.recv())
 
         if resp.success:
+            print(self.kvs_client.get(func.name))
             return CloudburstFunction(name, self, self.kvs_client)
         else:
             raise RuntimeError(f'Unexpected error while registering function: {resp}.')

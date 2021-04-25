@@ -49,7 +49,7 @@ python3.6 setup.py install
 
 cd $HYDRO_HOME/cloudburst
 if [[ -z "$REPO_ORG" ]]; then
-  REPO_ORG="hydro-project"
+  REPO_ORG="Tingjia980311"
 fi
 
 if [[ -z "$REPO_BRANCH" ]]; then
@@ -86,6 +86,7 @@ if [[ "$ROLE" = "executor" ]]; then
   echo "$LST" >> conf/cloudburst-config.yml
 
   while true; do
+    echo "  start executor server: python3.6 ......"
     python3.6 cloudburst/server/executor/server.py
 
     if [[ "$?" = "1" ]]; then

@@ -16,7 +16,7 @@ FROM hydroproject/base-cuda
 
 MAINTAINER Vikram Sreekanti <vsreekanti@gmail.com> version: 0.1
 
-ARG repo_org=hydro-project
+ARG repo_org=Tingjia980311
 ARG source_branch=master
 ARG build_branch=docker-build
 
@@ -34,7 +34,7 @@ RUN pip3 install -r requirements.txt
 
 WORKDIR $HYDRO_HOME
 RUN rm -rf anna
-RUN git clone --recurse-submodules https://github.com/hydro-project/anna
+RUN git clone --recurse-submodules https://github.com/Tingjia980311/anna
 WORKDIR anna
 RUN cd client/python && python3.6 setup.py install
 WORKDIR /
