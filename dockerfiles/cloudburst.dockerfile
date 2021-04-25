@@ -34,8 +34,13 @@ RUN pip3 install -r requirements.txt
 WORKDIR $HYDRO_HOME
 RUN rm -rf anna
 RUN git clone --recurse-submodules https://github.com/Tingjia980311/anna
-WORKDIR anna
+WORKDIR $HYDRO_HOME/anna
 RUN cd client/python && python3.6 setup.py install
+WORKDIR /
+
+
+WORKDIR $HYDRO_HOME/cloudburst
+RUN ./scripts/build.sh
 WORKDIR /
 
 # These installations are currently pipeline specific until we figure out a

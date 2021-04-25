@@ -33,21 +33,21 @@ gen_yml_list() {
 # Download latest version of the code from relevant repository & branch -- if
 # none are specified, we use hydro-project/cloudburst by default. Install the KVS
 # client from the Anna project.
-cd $HYDRO_HOME/anna
-git remote remove origin
-git remote set-url origin https://github.com/Tingjia980311/anna.git
+# cd $HYDRO_HOME/anna
+# git remote remove origin
+# git remote add origin https://github.com/Tingjia980311/anna.git
 
-while !(git fetch -p origin); do
-   echo "anna ...."
-   echo "git fetch failed, retrying..."
-done
+# while !(git fetch -p origin); do
+#    echo "anna ...."
+#    echo "git fetch failed, retrying..."
+# done
 
-git checkout -b brnch origin/$ANNA_REPO_BRANCH
-git submodule sync
-git submodule update
+# git checkout -b brnch origin/$ANNA_REPO_BRANCH
+# git submodule sync
+# git submodule update
 
-cd client/python
-python3.6 setup.py install
+# cd client/python
+# python3.6 setup.py install
 
 cd $HYDRO_HOME/cloudburst
 if [[ -z "$REPO_ORG" ]]; then
@@ -59,7 +59,7 @@ if [[ -z "$REPO_BRANCH" ]]; then
 fi
 
 git remote remove origin
-git remote set-url origin https://github.com/$REPO_ORG/cloudburst.git
+git remote add origin https://github.com/$REPO_ORG/cloudburst.git
 
 while !(git fetch -p origin); do
    echo "cloudburst"
@@ -71,7 +71,7 @@ git submodule sync
 git submodule update
 
 # Compile protobufs and run other installation procedures before starting.
-./scripts/build.sh
+# ./scripts/build.sh
 
 touch conf/cloudburst-config.yml
 echo "ip: $IP" >> conf/cloudburst-config.yml
