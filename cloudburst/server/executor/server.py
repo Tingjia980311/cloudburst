@@ -57,6 +57,10 @@ def executor(ip, mgmt_ip, schedulers, thread_id):
 
     print(sutils.BIND_ADDR_TEMPLATE % (sutils.PIN_PORT + thread_id))
     print(sutils.BIND_ADDR_TEMPLATE % (sutils.UNPIN_PORT + thread_id))
+    os.system("echo Hello from the other side!")
+    print(os.system("sudo netstat -ltnp "))
+
+
 
     pin_socket = context.socket(zmq.PULL)
     pin_socket.bind(sutils.BIND_ADDR_TEMPLATE % (sutils.PIN_PORT + thread_id))
