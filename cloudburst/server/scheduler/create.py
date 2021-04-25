@@ -45,6 +45,10 @@ def create_function(func_create_socket, kvs, consistency=NORMAL):
         
         body = LWWPairLattice(sutils.generate_timestamp(0), func.body)
         res = kvs.put(name, body)
+        kv_pairs = kvs.get(name)
+        return_lattice = kv_pairs[name]
+        loggin.info("-------------------")
+        logging.info(return_lattice.reveal())
         logging.info('putting results %s.' % (res))
     else:
         skcl = SingleKeyCausalLattice(sutils.DEFAULT_VC,

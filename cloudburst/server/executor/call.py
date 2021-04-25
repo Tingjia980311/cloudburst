@@ -149,7 +149,7 @@ def _run_function(func, refs, args, user_lib):
                     arg[idx] = refs[val.key]
 
             func_args += (arg,)
-    logging.info('executing function is ' % func)
+    logging.info('executing function is %s' % func)
     return func(*func_args)
 
 

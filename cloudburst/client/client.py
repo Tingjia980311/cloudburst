@@ -137,6 +137,7 @@ class CloudburstConnection():
         func = Function()
         func.name = name
         func.body = serializer.dump(function)
+        print(func.body)
 
         self.func_create_sock.send(func.SerializeToString())
 
