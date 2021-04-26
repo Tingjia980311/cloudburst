@@ -13,7 +13,6 @@
 #  limitations under the License.
 
 import random
-import logging
 
 import cloudburst.server.utils as sutils
 from cloudburst.shared.proto.cloudburst_pb2 import (
@@ -56,7 +55,6 @@ def retrieve_function(name, kvs, user_library, consistency=NORMAL):
         lattice = kvs.get(kvs_name)[kvs_name]
         if lattice:
             result = serializer.load_lattice(lattice)
-            logging.info("after serializer : %s",result)
         else:
             return None
     else:
