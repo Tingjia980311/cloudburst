@@ -263,6 +263,7 @@ class DefaultCloudburstSchedulerPolicy(BaseCloudburstSchedulerPolicy):
         while True:
             # Pick a random executor from the set of candidates and attempt to
             # pin this function there.
+            logging.info("candidate is " % candidates)
             node, tid = sys_random.sample(candidates, 1)[0]
 
             for other_node, _ in self.pending_dags[dag_name]:
