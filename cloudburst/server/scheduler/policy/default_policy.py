@@ -203,6 +203,8 @@ class DefaultCloudburstSchedulerPolicy(BaseCloudburstSchedulerPolicy):
     def pin_function(self, dag_name, function_ref, colocated):
         # If there are no functions left to choose from, then we return None,
         # indicating that we ran out of resources to use.
+        logging.info("candidate is %s " % self.unpinned_cpu_executors)
+
         if function_ref.gpu and len(self.unpinned_gpu_executors) == 0:
             return False
         elif not function_ref.gpu and len(self.unpinned_cpu_executors) == 0:
