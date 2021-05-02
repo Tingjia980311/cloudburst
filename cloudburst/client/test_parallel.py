@@ -1,6 +1,5 @@
-from cloudburst.client.ephe_common import *
-
-
+from cloudburst.client.client import CloudburstConnection
+import time
 def dag_start(cloudburst, key, size):
     return 1
 
@@ -13,6 +12,8 @@ def dag_sleep(cloudburst, up_res):
 
 def dag_end(cloudburst, *values):
     return len(values)
+
+cloudburst_client = CloudburstConnection('127.0.0.1', '127.0.0.1', local=True)
 
 SLEEP_NUM = 1
 
