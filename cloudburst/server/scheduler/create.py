@@ -39,7 +39,6 @@ def create_function(func_create_socket, kvs, consistency=NORMAL):
 
     name = sutils.get_func_kvs_name(func.name)
     logging.info('Creating function %s.' % (name))
-    logging.info('Creating function %s.' % (func.body))
 
     if consistency == NORMAL:
         
