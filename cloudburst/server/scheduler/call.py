@@ -33,8 +33,11 @@ serializer = Serializer()
 
 def call_function(func_call_socket, pusher_cache, policy, first_time = 1):
     # Parse the received protobuf for this function call.
-    call = FunctionCall()
-    call.ParseFromString(func_call_socket.recv())
+    if first_time == 1:
+        call = FunctionCall()
+        call.ParseFromString(func_call_socket.recv())
+    else:
+        call = func_call_socket
 
     if first_time == 1:
         response = GenericResponse()
@@ -60,7 +63,7 @@ def call_function(func_call_socket, pusher_cache, policy, first_time = 1):
         # response.error = NO_RESOURCES
         # if !call in policy.delay_call_queue:
         curtime = time.time()
-        policy.delay_call_queue.append((func_call_socket, curtime))
+        policy.delay_call_queue.append((call, curtime))
 
         # func_call_socket.send(response.SerializeToString())
         return
