@@ -1,6 +1,6 @@
 from cloudburst.client.client import CloudburstConnection
 
-AWS_FUNC_ELB = 'a7fc158176fff494d9b9f4afb4914312-759353926.us-east-1.elb.amazonaws.com'
+AWS_FUNC_ELB = 'a03bcf30dc0464116afc2faea44dc393-1972614435.us-east-1.elb.amazonaws.com'
 
 MY_IP = '18.210.27.139'
 
@@ -14,5 +14,5 @@ else:
 
 cloud_sleep = local_cloud.register(lambda _: time.sleep(1), 'sleep01')
 
-for i in range(5):
+for i in range(10):
     local_cloud.exec_func('sleep01',[])

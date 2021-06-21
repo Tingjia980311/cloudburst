@@ -336,6 +336,7 @@ def scheduler(ip, mgmt_ip, route_addr, policy_type):
 
             start = time.time()
         
+        logging.info("delayed queue length: %d" % len(policy.delay_call_queue))
         if policy.delay_call_queue != []:
             # policy.update()
             cur_avail_executors = len(policy.unpinned_cpu_executors)
