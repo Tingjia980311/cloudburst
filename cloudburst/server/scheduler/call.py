@@ -14,6 +14,7 @@
 
 import time
 import uuid
+import logging
 
 from cloudburst.server.scheduler import utils
 import cloudburst.server.utils as sutils
@@ -68,6 +69,7 @@ def call_function(func_call_socket, pusher_cache, policy, first_time = 1):
     ip, tid = result
     sckt = pusher_cache.get(utils.get_exec_address(ip, tid))
     sckt.send(call.SerializeToString())
+    logging.info("schedule function to executor.")
 
     # Send a success response to the user with the response key.
     # response.success = True
