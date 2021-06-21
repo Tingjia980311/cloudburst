@@ -343,7 +343,7 @@ def scheduler(ip, mgmt_ip, route_addr, policy_type):
             while cur_avail_executors > 0 and policy.delay_call_queue != []:
                 callsocket = policy.delay_call_queue[0]
                 policy.delay_call_queue.pop(0)
-                call_function(callsocket[0], pusher_cache, policy, 0)
+                # call_function(callsocket[0], pusher_cache, policy, 0)
                 cur_avail_executors -= 1
                 # policy.delay_call_queue.pop()
             cur_stamp = time.time()
