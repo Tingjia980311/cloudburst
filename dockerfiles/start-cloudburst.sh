@@ -101,8 +101,14 @@ elif [[ "$ROLE" = "scheduler" ]]; then
   echo "scheduler:" >> conf/cloudburst-config.yml
   echo "    routing_address: $ROUTE_ADDR" >> conf/cloudburst-config.yml
   echo "    policy: $POLICY" >> conf/cloudburst-config.yml
+  while true; do
+    echo "  start scheduler server: python3.6 ......"
+    python3.6 cloudburst/server/scheduler/server.py
 
-  python3.6 cloudburst/server/scheduler/server.py
+    if [[ "$?" = "1" ]]; then
+      exit 1
+    fi
+  done
 elif [[ "$ROLE" = "benchmark" ]]; then
   echo "benchmark:" >> conf/cloudburst-config.yml
   echo "    cloudburst_address: $FUNCTION_ADDR" >> conf/cloudburst-config.yml

@@ -32,14 +32,14 @@ serializer = Serializer()
 
 def call_function(func_call_socket, pusher_cache, policy, first_time = 1):
     # Parse the received protobuf for this function call.
+    call = FunctionCall()
+    call.ParseFromString(func_call_socket.recv())
+
     if first_time == 1:
         response = GenericResponse()
         response.success = True
-        response.response_id = 0
+        response.response_id = "0"
         func_call_socket.send(response.SerializeToString())
-
-    call = FunctionCall()
-    call.ParseFromString(func_call_socket.recv())
 
     # If there is no response key set for this request, we generate a random
     # UUID.
