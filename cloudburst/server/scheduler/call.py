@@ -51,7 +51,11 @@ def call_function(func_call_socket, pusher_cache, policy):
     if result is None:
         response.success = False
         response.error = NO_RESOURCES
-        func_call_socket.send(response.SerializeToString())
+        # if !call in policy.delay_call_queue:
+        curtime = time.time()
+        policy.delay_call_queue.append((func_call_socket, curtime))
+
+        # func_call_socket.send(response.SerializeToString())
         return
 
     # Forward the request on to the chosen executor node.

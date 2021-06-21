@@ -335,7 +335,27 @@ def scheduler(ip, mgmt_ip, route_addr, policy_type):
                 sckt.send(stats.SerializeToString())
 
             start = time.time()
+        
+        if policy.delay_call_queue != []:
+            # policy.update()
+            cur_avail_executors = len(policy.unpinned_cpu_executors)
+            while cur_avail_executors > 0 and (not policy.delay_call_queue.empty()):
+                callsocket = policy.delay_call_queue[0]
+                policy.delay_call_queue.pop(0)
+                call_function(callsocket[0], pusher_cache, policy)
+                cur_avail_executors -= 1
+                # policy.delay_call_queue.pop()
+            cur_stamp = time.time()
+            while (not policy.delay_call_queue.empty()):
+                callsocket = policy.delay_call_queue[0]
+                delay_time = cur_stamp - callsocket[1]
+                if delay_time > 4000:
+                    policy.delay_call_queue.pop(0)
+                else:
+                    break
 
+
+    
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

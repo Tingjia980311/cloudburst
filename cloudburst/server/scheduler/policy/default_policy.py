@@ -96,6 +96,7 @@ class DefaultCloudburstSchedulerPolicy(BaseCloudburstSchedulerPolicy):
         # Indicates if we are running in local mode
         self.local = local
 
+        self.delay_call_queue = []
 
     def pick_executor(self, references, function_name=None, colocated=[],
                       schedule=None):
