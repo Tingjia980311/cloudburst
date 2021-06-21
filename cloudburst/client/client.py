@@ -322,11 +322,11 @@ class CloudburstConnection():
 
         self.func_call_sock.send(call.SerializeToString())
 
-        # r = GenericResponse()
-        # r.ParseFromString(self.func_call_sock.recv())
+        r = GenericResponse()
+        r.ParseFromString(self.func_call_sock.recv())
 
         self.rid += 1
-        # return r.response_id
+        return r.response_id
 
     def _connect(self):
         sckt = self.context.socket(zmq.REQ)

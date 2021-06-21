@@ -173,7 +173,7 @@ def scheduler(ip, mgmt_ip, route_addr, policy_type):
             create_function(func_create_socket, kvs)
 
         if func_call_socket in socks and socks[func_call_socket] == zmq.POLLIN:
-            call_function(func_call_socket, pusher_cache, policy)
+            call_function(func_call_socket, pusher_cache, policy, 1)
 
         if (dag_create_socket in socks and socks[dag_create_socket]
                 == zmq.POLLIN):
@@ -342,7 +342,7 @@ def scheduler(ip, mgmt_ip, route_addr, policy_type):
             while cur_avail_executors > 0 and (not policy.delay_call_queue.empty()):
                 callsocket = policy.delay_call_queue[0]
                 policy.delay_call_queue.pop(0)
-                call_function(callsocket[0], pusher_cache, policy)
+                call_function(callsocket[0], pusher_cache, policy, 0)
                 cur_avail_executors -= 1
                 # policy.delay_call_queue.pop()
             cur_stamp = time.time()

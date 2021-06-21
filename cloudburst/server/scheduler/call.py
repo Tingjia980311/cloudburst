@@ -30,8 +30,14 @@ from cloudburst.shared.serializer import Serializer
 serializer = Serializer()
 
 
-def call_function(func_call_socket, pusher_cache, policy):
+def call_function(func_call_socket, pusher_cache, policy, first_time = 1):
     # Parse the received protobuf for this function call.
+    if first_time == 1:
+        response = GenericResponse()
+        response.success = True
+        response.response_id = 0
+        func_call_socket.send(response.SerializeToString())
+
     call = FunctionCall()
     call.ParseFromString(func_call_socket.recv())
 
@@ -47,10 +53,10 @@ def call_function(func_call_socket, pusher_cache, policy):
                            call.arguments.values)))
     result = policy.pick_executor(refs)
 
-    response = GenericResponse()
+    # response = GenericResponse()
     if result is None:
-        response.success = False
-        response.error = NO_RESOURCES
+        # response.success = False
+        # response.error = NO_RESOURCES
         # if !call in policy.delay_call_queue:
         curtime = time.time()
         policy.delay_call_queue.append((func_call_socket, curtime))
@@ -64,9 +70,9 @@ def call_function(func_call_socket, pusher_cache, policy):
     sckt.send(call.SerializeToString())
 
     # Send a success response to the user with the response key.
-    response.success = True
-    response.response_id = call.response_key
-    func_call_socket.send(response.SerializeToString())
+    # response.success = True
+    # response.response_id = call.response_key
+    # func_call_socket.send(response.SerializeToString())
 
 
 def call_dag(call, pusher_cache, dags, policy, request_id=None):
